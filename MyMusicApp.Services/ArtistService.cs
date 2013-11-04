@@ -14,7 +14,8 @@ namespace MyMusicApp.Services
     {
         public List<ArtistModel> getArtists() {
             List<Artist> theList = new List<Artist>(ArtistDao.Instance.select());
-            List<ArtistModel> modelList = theList.Select(x => new ArtistModel {ArtistId=x.ArtistId, Name=x.Name});
+            IEnumerable<ArtistModel> selectedModels = theList.Select(x => new ArtistModel {ArtistId=x.ArtistId, Name=x.Name});
+            List<ArtistModel> modelList = selectedModels.ToList<ArtistModel>();
 
             return modelList;
         }
