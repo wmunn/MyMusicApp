@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusicApp.Web", "MyMusicApp\MyMusicApp.Web.csproj", "{101E200B-D7EF-4C10-9778-7F3369CD097B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusicApp.Web.Tests", "MyMusicApp.Tests\MyMusicApp.Web.Tests.csproj", "{9D872306-C4AE-4A99-9D27-CC8C2EAC9B8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusicApp.DAO", "MyMusicApp.DAO\MyMusicApp.DAO.csproj", "{54AD0EAC-DAA5-4449-8E25-3E463930AD43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusicApp.DAO.Tests", "MyMusicApp.DAO.Tests\MyMusicApp.DAO.Tests.csproj", "{EA1AFEA5-FAF3-4770-88B0-8FF413134B64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusicApp.Services", "MyMusicApp.Services\MyMusicApp.Services.csproj", "{7F1516E5-3BE3-4FD1-9ED8-B87DA49F8DA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusicApp.Domain", "MyMusicApp.Domain\MyMusicApp.Domain.csproj", "{2609ADAC-2DA0-48F3-8667-05FEC50E33CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{101E200B-D7EF-4C10-9778-7F3369CD097B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{101E200B-D7EF-4C10-9778-7F3369CD097B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{101E200B-D7EF-4C10-9778-7F3369CD097B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{101E200B-D7EF-4C10-9778-7F3369CD097B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D872306-C4AE-4A99-9D27-CC8C2EAC9B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D872306-C4AE-4A99-9D27-CC8C2EAC9B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D872306-C4AE-4A99-9D27-CC8C2EAC9B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D872306-C4AE-4A99-9D27-CC8C2EAC9B8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54AD0EAC-DAA5-4449-8E25-3E463930AD43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54AD0EAC-DAA5-4449-8E25-3E463930AD43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54AD0EAC-DAA5-4449-8E25-3E463930AD43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54AD0EAC-DAA5-4449-8E25-3E463930AD43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA1AFEA5-FAF3-4770-88B0-8FF413134B64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA1AFEA5-FAF3-4770-88B0-8FF413134B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA1AFEA5-FAF3-4770-88B0-8FF413134B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA1AFEA5-FAF3-4770-88B0-8FF413134B64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F1516E5-3BE3-4FD1-9ED8-B87DA49F8DA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1516E5-3BE3-4FD1-9ED8-B87DA49F8DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1516E5-3BE3-4FD1-9ED8-B87DA49F8DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1516E5-3BE3-4FD1-9ED8-B87DA49F8DA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2609ADAC-2DA0-48F3-8667-05FEC50E33CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2609ADAC-2DA0-48F3-8667-05FEC50E33CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2609ADAC-2DA0-48F3-8667-05FEC50E33CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2609ADAC-2DA0-48F3-8667-05FEC50E33CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
