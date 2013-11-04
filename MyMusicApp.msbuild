@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="RunUnitTests">
+  <ItemGroup>
+    <BuildArtifactsDir Include="BuildArtifacts\" />
+    <SolutionFile Include="MyMusicApp.sln" />
+    <MSTestLocation Include="C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\MSTest.exe"/>
+    <UnitTestsDLL Include="BuildArtifacts\MyMusicApp.Tests.dll" />
+    <TestResultsPath Include="BuildArtifacts\TestResults.xml" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <BuildPlatform Condition=" '$(BuildPlatform)' == '' ">Any CPU</BuildPlatform>
+  </PropertyGroup>
+
+  <Target Name="Compile" DependsOnTargets="Init">
+    <MSBuild Projects="@(SolutionFile)"
+             Targets="Rebuild"
+             Properties="OutDir=%(BuildArtifactsDir.FullPath);Configuration=$(Configuration);Platform=$(BuildPlatform)" />
+  </Target>
+  <Target Name="Init" DependsOnTargets="Clean" >
+    <MakeDir Directories="@(BuildArtifactsDir)"/>
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="@(BuildArtifactsDir)" />
+  </Target>
+  <Target Name="RunUnitTests" DependsOnTargets="Compile">
+    <Exec Command='"@(MSTestLocation)"/testcontainer:"@(UnitTestsDLL)"' />
+  </Target>
+</Project>
