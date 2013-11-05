@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-//using MyMusicApp.Services;
+using MyMusicApp.Services;
+using MyMusicApp.Models;
+using MyMusicApp.Domain;
 
 namespace MyMusicApp.Controllers
 {
@@ -11,12 +13,18 @@ namespace MyMusicApp.Controllers
     {
         //
         // GET: /Artists/
-        
-        public ActionResult Index()
+        private readonly IArtistService service;
+
+        public ArtistsController()
         {
-            //return View(new ArtistService().getArtists());
-            return View();
+            service = new ArtistService();
         }
 
+        public ActionResult Index()
+        {
+            List<Artist> theList = service.getArtists();
+            IEnumerable<ArtistModel> selectedModels = theList.Select(x => new ArtistModel { ArtistId = x.ArtistId, Name = x.Name });
+            return View(selectedModels);
+        }
     }
 }

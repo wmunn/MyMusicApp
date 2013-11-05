@@ -232,6 +232,10 @@
       <Project>{2609adac-2da0-48f3-8667-05fec50e33ce}</Project>
       <Name>MyMusicApp.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyMusicApp.Services\MyMusicApp.Services.csproj">
+      <Project>{7f1516e5-3be3-4fd1-9ed8-b87da49f8da0}</Project>
+      <Name>MyMusicApp.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

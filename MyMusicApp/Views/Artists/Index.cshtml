@@ -1,4 +1,4 @@
-﻿@model List<MyMusicApp.Models.ArtistModel>
+﻿@model IEnumerable<MyMusicApp.Models.ArtistModel>
 
 @{
     ViewBag.Title = "Index";
@@ -8,7 +8,7 @@
 <button>Add</button>
 <table>
     <tr>
-        <th>Name</th>
+        <th>@Html.DisplayNameFor(model => model.Name)</th>
         <th>Modify?</th>
     </tr>
     <tr>
@@ -18,4 +18,15 @@
             <button>Delete</button>
         </td>
     </tr>
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <button id="open-edit-artist-modal">Edit</button>
+            <button id="open-delete-artist-modal">Delete</button>
+        </td>
+    </tr>
+    }
 </table>

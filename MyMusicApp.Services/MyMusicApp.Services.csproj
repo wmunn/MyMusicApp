@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArtistService.cs" />
+    <Compile Include="IArtistService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,10 +51,6 @@
     <ProjectReference Include="..\MyMusicApp.Domain\MyMusicApp.Domain.csproj">
       <Project>{2609adac-2da0-48f3-8667-05fec50e33ce}</Project>
       <Name>MyMusicApp.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyMusicApp\MyMusicApp.Web.csproj">
-      <Project>{101e200b-d7ef-4c10-9778-7f3369cd097b}</Project>
-      <Name>MyMusicApp.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
