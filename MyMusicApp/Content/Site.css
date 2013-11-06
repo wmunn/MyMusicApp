@@ -9,7 +9,18 @@ header, footer, nav, section {
     display: block;
 }
 
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+}
 
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
 /* Styles for basic forms
 -----------------------------------------------------------*/
 fieldset {
@@ -59,3 +70,28 @@ textarea {
 .validation-summary-valid {
     display: none;
 }
+
+ul#menu {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 0 0 5px;
+    padding: 0;
+    text-align: right;
+}
+
+    ul#menu li {
+        display: inline;
+        list-style: none;
+        padding-left: 15px;
+    }
+
+        ul#menu li a {
+            background: none;
+            color: #999;
+            text-decoration: none;
+        }
+
+        ul#menu li a:hover {
+            color: #333;
+            text-decoration: none;
+        }

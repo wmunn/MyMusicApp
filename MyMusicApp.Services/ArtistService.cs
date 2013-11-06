@@ -14,5 +14,11 @@ namespace MyMusicApp.Services
         public List<Artist> getArtists() {
             return (new List<Artist>(ArtistDao.Instance.select()));
         }
+
+        public Artist getArtist(int id)
+        {
+            return (ArtistDao.Instance.select(id));
+        }
+
     }
 }

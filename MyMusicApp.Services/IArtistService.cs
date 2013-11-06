@@ -7,5 +7,6 @@ namespace MyMusicApp.Services
     public interface IArtistService
     {
         List<Artist> getArtists();
+        Artist getArtist(int ArtistId);
     }
 }

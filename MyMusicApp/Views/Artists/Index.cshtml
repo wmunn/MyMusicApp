@@ -3,20 +3,45 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@*@Html.LabelFor(modelItem => modelItem.Name)
+                               @Html.TextBoxFor(modelItem => item.Name)
+                                @Html.ValidationMessageFor(modelItem => item.Name)
+*@
 <h2>Artists</h2>
-<button>Add</button>
+
+<div id="edit-artist-modal" title="Edit Artist">
+    @using (Html.BeginForm("Edit","Artists", FormMethod.Post, new {id ="ArtistId"}))
+    {
+        <div>
+            <fieldset>
+                <legend>Edit Artist</legend>
+                    <div>This needs to change</div>
+                    <div>OK</div>
+            </fieldset>
+        </div>
+    }
+</div>
+
+<div id="delete-artist-modal" title="Delete Artist">
+    <p>This is a the modal for deleting an artist</p>
+</div>
+<div id="create-artist-modal" title="Create Artist">
+    <p>This is a the modal for creating an artist</p>
+    <div>
+        <label for="ArtistName2">Name:</label>
+        <input type="text" id="ArtistName2" />
+    </div>
+
+</div>
+
+<div id="edit-art"></div>
+
+<button id="open-create-artist-modal">Add</button>
+
 <table>
     <tr>
         <th>@Html.DisplayNameFor(model => model.Name)</th>
         <th>Modify?</th>
-    </tr>
-    <tr>
-        <td>Bon Jovi</td>
-        <td>
-            <button>Edit</button>
-            <button>Delete</button>
-        </td>
     </tr>
     @foreach (var item in Model) {
     <tr>
@@ -24,9 +49,14 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            <button id="open-edit-artist-modal">Edit</button>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ArtistId }, new { @class = "edit-artist-modal" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.ArtistId }, new { @class = "delete-artist-modal" })
+            <button id="open-edit-artist-modal" value="item.ArtistId">Edit</button>
             <button id="open-delete-artist-modal">Delete</button>
         </td>
     </tr>
+
     }
 </table>
+
+    
