@@ -3,10 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-@*@Html.LabelFor(modelItem => modelItem.Name)
-                               @Html.TextBoxFor(modelItem => item.Name)
-                                @Html.ValidationMessageFor(modelItem => item.Name)
-*@
+
 <h2>Artists</h2>
 
 <div id="edit-artist-modal" title="Edit Artist">
@@ -25,6 +22,8 @@
 <div id="delete-artist-modal" title="Delete Artist">
     <p>This is a the modal for deleting an artist</p>
 </div>
+
+
 <div id="create-artist-modal" title="Create Artist">
     <p>This is a the modal for creating an artist</p>
     <div>
@@ -41,7 +40,7 @@
 <table>
     <tr>
         <th>@Html.DisplayNameFor(model => model.Name)</th>
-        <th>Modify?</th>
+        <th></th>
     </tr>
     @foreach (var item in Model) {
     <tr>
@@ -49,14 +48,10 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ArtistId }, new { @class = "edit-artist-modal" })
-            @Html.ActionLink("Delete", "Delete", new { id = item.ArtistId }, new { @class = "delete-artist-modal" })
             <button id="open-edit-artist-modal" value="item.ArtistId">Edit</button>
             <button id="open-delete-artist-modal">Delete</button>
         </td>
     </tr>
-
     }
 </table>
 
-    

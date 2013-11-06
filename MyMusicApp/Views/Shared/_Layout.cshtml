@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
-    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/jquery")
-    <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/JavaScript1.js"></script>
 </head>
@@ -31,8 +32,9 @@
     </header>
     <div id="body">
         @RenderSection("featured", required: false)
-        @RenderBody()
-
+        <section class="content-wrapper">
+            @RenderBody()
+        </section>
     </div>
     @RenderSection("scripts", required: false)
 </body>
