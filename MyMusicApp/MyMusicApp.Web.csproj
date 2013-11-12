@@ -39,7 +39,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DelegateDecompiler, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DelegateDecompiler.0.6.0.0\lib\net40-Client\DelegateDecompiler.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Reflection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Mono.Reflection.1.0.0.0\lib\Mono.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="PerpetuumSoft.Knockout, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\kMVC.0.5.4\lib\net40\PerpetuumSoft.Knockout.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -205,8 +217,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
-    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\knockout-3.0.0.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\ModalForm.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\perpetuum.knockout.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
