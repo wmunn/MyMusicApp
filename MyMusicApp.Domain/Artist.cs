@@ -13,8 +13,9 @@ namespace MyMusicApp.Domain
         public string Name { get; set; }
 
 
-        public Artist(string Name)
+        public Artist(int ArtistId, string Name)
         {
+            this.ArtistId = ArtistId;
             this.Name = Name;
         }
     }

@@ -16,11 +16,11 @@ namespace MyMusicApp.DAO
         static ArtistDao() {
             mockDataModel = new List<Artist>();
  
-            mockDataModel.Add(new Artist("Morrissey"));
-            mockDataModel.Add(new Artist("The Smiths"));
-            mockDataModel.Add(new Artist("Depeche Mode"));
-            mockDataModel.Add(new Artist("Thirty Seconds to Mars"));
-            mockDataModel.Add(new Artist("VNV Nation"));
+            mockDataModel.Add(new Artist( 0, "Morrissey"));
+            mockDataModel.Add(new Artist( 1, "The Smiths"));
+            mockDataModel.Add(new Artist( 2, "Depeche Mode"));
+            mockDataModel.Add(new Artist( 3, "Thirty Seconds to Mars"));
+            mockDataModel.Add(new Artist( 4, "VNV Nation"));
         }
  
         private ArtistDao() { }
