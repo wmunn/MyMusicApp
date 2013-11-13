@@ -20,5 +20,20 @@ namespace MyMusicApp.Services
             return (ArtistDao.Instance.select(id));
         }
 
+        public void editArtist(Artist artist)
+        {
+            ArtistDao.Instance.update(artist);
+        }
+
+        public void addArtist(Artist artist)
+        {
+            ArtistDao.Instance.insert(artist);
+        }
+
+        public void deleteArtist(Artist artist)
+        {
+            ArtistDao.Instance.delete(artist);
+        }
+
     }
 }

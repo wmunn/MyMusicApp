@@ -12,6 +12,14 @@ namespace MyMusicApp.Domain
         public int ArtistId { get; set; }
         public string Name { get; set; }
 
+        public Artist()
+        {
+        }
+
+        public Artist(string Name)
+        {
+            this.Name = Name;
+        }
 
         public Artist(int ArtistId, string Name)
         {

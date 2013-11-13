@@ -8,5 +8,8 @@ namespace MyMusicApp.Services
     {
         List<Artist> getArtists();
         Artist getArtist(int ArtistId);
+        void editArtist(Artist artist);
+        void addArtist(Artist artist);
+        void deleteArtist(Artist artist);
     }
 }

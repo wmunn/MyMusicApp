@@ -21,7 +21,7 @@ namespace MyMusicApp.Controllers
             service = new ArtistService();
         }
 
-        public ActionResult Index()
+        public ActionResult Testing()
         {
             List<Artist> theList = service.getArtists();
             IEnumerable<ArtistModel> selectedModels = theList.Select(x => new ArtistModel { ArtistId = x.ArtistId, Name = x.Name });
@@ -42,7 +42,7 @@ namespace MyMusicApp.Controllers
             return PartialView(deleteArtist);
         }
 
-        public ActionResult Testing()
+        public ActionResult Index()
         {            
             // Get the model (setup) of the grid defined in the /Models folder.
             var gridModel = new Grid();
@@ -87,7 +87,7 @@ namespace MyMusicApp.Controllers
 
             //SetUpCustomerIDSearchDropDown(ordersGrid);
             //SetUpFreightSearchDropDown(ordersGrid);
-            //SetShipNameSearchDropDown(ordersGrid);
+            SearchArtists(artistsGrid);
 
             artistsGrid.ToolBarSettings.ShowEditButton = true;
             artistsGrid.ToolBarSettings.ShowAddButton = true;
@@ -98,6 +98,47 @@ namespace MyMusicApp.Controllers
             // setup the dropdown values for the CustomerID editing dropdown
             //SetUpCustomerIDEditDropDown(ordersGrid);
         }
+
+        public ActionResult EditRows(Artist editedArtist)
+        {
+            // Get the grid and database (northwind) models
+            var gridModel = new Grid();
+
+            // If we are in "Edit" mode
+            if (gridModel.ArtistsGrid.AjaxCallBackMode == AjaxCallBackMode.EditRow)
+            {
+                // Get the data from and find the Artist corresponding to the edited row
+                Artist artist = service.getArtist(editedArtist.ArtistId);
+
+                // update the Artist information
+                artist.Name = editedArtist.Name;
+ 
+                service.editArtist(artist);
+            }
+            if (gridModel.ArtistsGrid.AjaxCallBackMode == AjaxCallBackMode.AddRow)
+            {
+                // since we are adding a new Order, create a new istance
+                Artist artist = new Artist(editedArtist.Name);
+
+                service.addArtist(artist);
+            }
+            if (gridModel.ArtistsGrid.AjaxCallBackMode == AjaxCallBackMode.DeleteRow)
+            {
+                service.deleteArtist(editedArtist);
+            }
+
+            return RedirectToAction("Index", "Artists");
+        }
+
+        private void SearchArtists(JQGrid artistsGrid)
+        {
+            JQGridColumn freightColumn = artistsGrid.Columns.Find(c => c.DataField == "Name");
+            freightColumn.Searchable = true;
+            freightColumn.DataType = typeof(string);
+            freightColumn.SearchToolBarOperation = SearchOperation.Contains;
+            freightColumn.SearchType = SearchType.TextBox;
+        }
+
 
     }
 }
