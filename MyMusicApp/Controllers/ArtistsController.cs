@@ -21,11 +21,55 @@ namespace MyMusicApp.Controllers
             service = new ArtistService();
         }
 
+        public JsonResult GetAllArtists()
+        {
+            return Json(service.getArtists(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AddArtist(Artist artist)
+        {
+            System.Diagnostics.Debug.WriteLine("This is " + artist.Name);
+            Console.WriteLine("Artist is " + artist.Name);
+            service.addArtist(artist);
+            return Json(artist, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult EditArtist(int id, Artist artist)
+        {
+           artist.ArtistId = id;
+           service.editArtist(artist);
+           return Json(service.getArtists(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteArtist(int id, Artist artist)
+        {
+            artist.ArtistId = id;
+            service.deleteArtist(artist);
+            return Json(service.getArtists(), JsonRequestBehavior.AllowGet);
+
+        }
+  
         public ActionResult Testing()
         {
             List<Artist> theList = service.getArtists();
             IEnumerable<ArtistModel> selectedModels = theList.Select(x => new ArtistModel { ArtistId = x.ArtistId, Name = x.Name });
             return View(selectedModels);
+        }
+
+        public ActionResult KoPage()
+        {
+            List<Artist> theList = service.getArtists();
+            IEnumerable<ArtistModel> selectedModels = theList.Select(x => new ArtistModel { ArtistId = x.ArtistId, Name = x.Name });
+            return View(selectedModels);
+        }
+
+        public ActionResult KMVC()
+        {
+            var initialState = new[] {
+            new Gift { Title = "Tall Hat", Price = 49.95 },
+            new Gift { Title = "Long Cloak", Price = 78.25 }
+            };
+            return View(initialState);
         }
 
         [HttpPost]
@@ -84,6 +128,9 @@ namespace MyMusicApp.Controllers
             // show the search toolbar
             artistsGrid.ToolBarSettings.ShowSearchToolBar = true;
             artistsGrid.Columns.Find(c => c.DataField == "ArtistId").Searchable = false;
+            artistsGrid.Columns.Find(c => c.DataField == "").Searchable = false;
+            artistsGrid.Columns.Find(c => c.DataField == "").EditActionIconsColumn = true;
+            artistsGrid.Columns.Find(c => c.DataField == "").HeaderText = "Actions";
 
             //SetUpCustomerIDSearchDropDown(ordersGrid);
             //SetUpFreightSearchDropDown(ordersGrid);
@@ -132,13 +179,47 @@ namespace MyMusicApp.Controllers
 
         private void SearchArtists(JQGrid artistsGrid)
         {
-            JQGridColumn freightColumn = artistsGrid.Columns.Find(c => c.DataField == "Name");
-            freightColumn.Searchable = true;
-            freightColumn.DataType = typeof(string);
-            freightColumn.SearchToolBarOperation = SearchOperation.Contains;
-            freightColumn.SearchType = SearchType.TextBox;
+            JQGridColumn nameColumn = artistsGrid.Columns.Find(c => c.DataField == "Name");
+            nameColumn.Searchable = true;
+            nameColumn.DataType = typeof(string);
+            nameColumn.SearchToolBarOperation = SearchOperation.Contains;
+            nameColumn.SearchType = SearchType.TextBox;
         }
 
+
+        public ActionResult GetArtist(int id)
+        {
+            Artist selectedArtist = service.getArtist(id);
+            return Json(new ArtistModel
+            { 
+                ArtistId  = id, 
+                Name = selectedArtist.Name
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult SaveArtist(ArtistModel data)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                //data.ResponseAction.ValidationResults = ModelState.ToValidationResults();
+               // data.ResponseAction.Message = "Please correct the errors.";
+                return Json(data);
+            }
+            else
+            {
+               // service.editArtist(data.Model.ArtistModel);
+                // Just a thought here... may not be best approach
+                Artist selectedArtist = service.getArtist(data.ArtistId);
+                return Json(new ArtistModel
+                {
+                    ArtistId = data.ArtistId,
+                    Name = selectedArtist.Name
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
 
     }
 }

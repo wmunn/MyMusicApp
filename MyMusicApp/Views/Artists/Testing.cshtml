@@ -1,34 +1,43 @@
 ﻿@model IEnumerable<MyMusicApp.Models.ArtistModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Testing";
 }
 
 <h2>Artists</h2>
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryui")
+    <script src="~/Scripts/JavaScript1.js"></script>
+}
 
-<div id="edit-artist-modal" title="Edit Artist">
-    @using (Html.BeginForm("Edit","Artists", FormMethod.Post, new {id ="ArtistId"}))
-    {
+
+<div id="ArtistsEditDialog2" data-bind="text: ArtistName2" title="Edit Artist" style="display: none;" data-url="@Url.Action("GetArtist", "Artists")" data-editUrl="@Url.Action("SaveArtist", "Artists")">
+
         <div>
             <fieldset>
                 <legend>Edit Artist</legend>
                     <div>This needs to change</div>
-                    <div>OK</div>
+                    <div>OK</div> 
+                <div>      
+                    <label for="ArtistName2">Name:</label>
+                    <input type="text" id="ArtistName2" data-bind="value: model.Name" />
+                 </div>
             </fieldset>
         </div>
-    }
+
 </div>
 
 <div id="delete-artist-modal" title="Delete Artist">
     <p>This is a the modal for deleting an artist</p>
 </div>
 
-
 <div id="create-artist-modal" title="Create Artist">
     <p>This is a the modal for creating an artist</p>
     <div>
-        <label for="ArtistName2">Name:</label>
-        <input type="text" id="ArtistName2" />
+        <label for="ArtistName">Name:</label>
+        <input type="text" id="ArtistName" />
     </div>
 
 </div>
@@ -40,17 +49,17 @@
 <table>
     <tr>
         <th>@Html.DisplayNameFor(model => model.Name)</th>
-        <th></th>
+        <th>Actions</th>
     </tr>
     @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            <button id="open-edit-artist-modal" value="item.ArtistId">Edit</button>
-            <button id="open-delete-artist-modal">Delete</button>
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <button id="openEditArtistModal2" value="item.Name">Edit</button>
+                <button id="open-delete-artist-modal">Delete</button>
+            </td>
+        </tr>
     }
 </table>

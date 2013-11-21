@@ -147,6 +147,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ArtistModel.cs" />
+    <Compile Include="Models\Gift.cs" />
     <Compile Include="Models\Grid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -222,11 +223,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
-    <Content Include="Scripts\knockout-3.0.0.js" />
-    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
-    <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\perpetuum.knockout.js" />
     <Content Include="Scripts\trirand\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\trirand\i18n\grid.locale-bg.js" />
     <Content Include="Scripts\trirand\i18n\grid.locale-bg1251.js" />
@@ -294,6 +291,8 @@
     <Content Include="Views\Artists\Edit.cshtml" />
     <Content Include="Views\Artists\Delete.cshtml" />
     <Content Include="Views\Artists\Testing.cshtml" />
+    <Content Include="Views\Artists\KMVC.cshtml" />
+    <Content Include="Views\Artists\KoPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,12 +20,17 @@ namespace MyMusicApp.Models
                                     // if not set, the first column will be assumed as primary key
                                     PrimaryKey = true,
                                     Editable = false,
-                                    Width = 50 },
+                                    Visible = false,
+                                    Width = 0 },
                     new JQGridColumn { DataField = "Name", 
                                     Editable = true,
-                                    Width = 100 }
+                                    Width = 400 },
+                    new JQGridColumn { Sortable = false, 
+                                    Editable = false,
+                                    Fixed =true,
+                                    Width = 150 }
                 },
-                Width = Unit.Pixel(640)
+                Width = Unit.Pixel(400)
             };
 
             ArtistsGrid.ToolBarSettings.ShowRefreshButton = true;
