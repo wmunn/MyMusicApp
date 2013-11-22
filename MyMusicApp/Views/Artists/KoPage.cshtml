@@ -73,7 +73,7 @@
             self.delete = function (Artist) {
                 if (confirm('Are you sure to Delete "' + Artist.Name + '" ??')) {
                     var id = Artist.ArtistId;
-
+                    alert(id);
                     $.ajax({
                         url: '@Url.Action("DeleteArtist", "Artists")',
                         cache: false,

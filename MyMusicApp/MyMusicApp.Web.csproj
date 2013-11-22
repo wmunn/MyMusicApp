@@ -147,7 +147,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ArtistModel.cs" />
-    <Compile Include="Models\Gift.cs" />
     <Compile Include="Models\Grid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

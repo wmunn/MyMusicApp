@@ -41,8 +41,9 @@ namespace MyMusicApp.Controllers
            return Json(service.getArtists(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult DeleteArtist(int id, Artist artist)
+        public JsonResult DeleteArtist(int id)
         {
+            Artist artist = new Artist();
             artist.ArtistId = id;
             service.deleteArtist(artist);
             return Json(service.getArtists(), JsonRequestBehavior.AllowGet);
@@ -65,11 +66,7 @@ namespace MyMusicApp.Controllers
 
         public ActionResult KMVC()
         {
-            var initialState = new[] {
-            new Gift { Title = "Tall Hat", Price = 49.95 },
-            new Gift { Title = "Long Cloak", Price = 78.25 }
-            };
-            return View(initialState);
+            return View();
         }
 
         [HttpPost]
