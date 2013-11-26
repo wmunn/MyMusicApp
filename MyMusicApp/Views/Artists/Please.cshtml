@@ -53,6 +53,7 @@
                             // alert('added');
                             self.Artists.push(data);
                             self.Name("");
+                            $("#addArtist").dialog("close");
                         }
                     }).fail(
                          function (xhr, textStatus, err) {
@@ -60,7 +61,7 @@
                          });
                 }
                 else {
-                    alert('Please Enter All the Values !!');
+                    alert('You did not enter any text!');
                 }
             }
 
@@ -106,6 +107,7 @@
                         self.Artists.removeAll();
                         self.Artists(data); //Put the response in ObservableArray
                         self.Artist(null);
+                        $("#updateArtist").dialog("close");
                         alert("Record Updated Successfully");
                     }
                 }).fail(
@@ -117,11 +119,13 @@
            // Reset artist details
             self.reset = function () {
                 self.Name("");
+                $("#addArtist").dialog("close");
             }
 
            // Cancel artist details
             self.cancel = function () {
                 self.Artist(null);
+                $("#updateArtist").dialog("close");
             }
         }
         var viewModel = new ArtistViewModel();
@@ -135,38 +139,14 @@
             autoOpen: false,
             width: 400,
             height: 250,
-            modal: true,
-            buttons: {
-                "Cancel": function () {
-                    $(this).dialog("close");
-                },
-                "Save": function () {
-                    $(this).dialog("close");
-                }
-            },
-            open: function () {
-                //var rowid = $(this).data("Name");
-                var rowid = "djfsapoiijsdfoiajsiof";
-                var name = $(this).data("Name");
-                alert(this);
-                alert(rowid);
-                alert(name);
-            }
+            modal: true
         });
+
         $("#addArtist").dialog({
             autoOpen: false,
             width: 400,
             height: 250,
-            modal: true,
-            buttons: {
-                "Cancel": function () {
-                    $(this).dialog("close");
-                },
-                "Save": function () {
-                    $(this).dialog("close");
-                }
-            }
-
+            modal: true
         });
 
         $("#openAddArtist").click(function () {
@@ -228,6 +208,6 @@
 
         <div>
             <button data-bind="click: $root.create">Save</button>
-            <button data-bind="click: $root.reset">Reset</button>
+            <button data-bind="click: $root.reset">Cancel</button>
         </div>
     </div>

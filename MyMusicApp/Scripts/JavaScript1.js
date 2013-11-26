@@ -15,11 +15,7 @@
         },
         open: function () {
             //var rowid = $(this).data("Name");
-            var rowid = "djfsapoiijsdfoiajsiof";
-            var name = $(this).data("Name");
-            alert(this);
             alert(rowid);
-            alert(name);
             loadArtistDialog(rowid, $(this));
         },
         close: function () {
