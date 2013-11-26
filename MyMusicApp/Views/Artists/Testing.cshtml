@@ -9,6 +9,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/jqueryui")
+    <script src="@Url.Content("~/Scripts/knockout-2.2.0.debug.js")" type="text/javascript"></script>
     <script src="~/Scripts/JavaScript1.js"></script>
 }
 
@@ -57,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <button id="openEditArtistModal2" value="item.Name">Edit</button>
+                <button id="openEditArtistModal2">Edit</button>
                 <button id="open-delete-artist-modal">Delete</button>
             </td>
         </tr>

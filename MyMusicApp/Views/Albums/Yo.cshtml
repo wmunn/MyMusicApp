@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "Yo";
+}
+
+<h2>Yo</h2>
+ @section scripts
+{
+    <script src="~/Scripts/jquery-2.0.3.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui-1.8.20.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/knockout-2.3.0.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        
+        //custom binding to initialize a jQuery UI dialog
+        $(document).ready(function () {
+            ko.bindingHandlers.jqDialog = {
+                init: function (element, valueAccessor) {
+                    var options = ko.utils.unwrapObservable(valueAccessor()) || {};
+
+                    //handle disposal
+                    ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                        $(element).dialog("destroy");
+                    });
+
+                    //dialog is moved to the bottom of the page by jQuery UI. Prevent initial pass of ko.applyBindings from hitting it
+                    setTimeout(function () {
+                        $(element).dialog(options);
+                    }, 0);
+                }
+            };
+
+            //custom binding handler that opens/closes the dialog
+            ko.bindingHandlers.openDialog = {
+                update: function (element, valueAccessor) {
+                    var value = ko.utils.unwrapObservable(valueAccessor());
+                    if (value) {
+                        $(element).dialog("open");
+                    } else {
+                        $(element).dialog("close");
+                    }
+                }
+            }
+
+            //custom binding to initialize a jQuery UI button
+            ko.bindingHandlers.jqButton = {
+                init: function (element, valueAccessor) {
+                    var options = ko.utils.unwrapObservable(valueAccessor()) || {};
+
+                    //handle disposal
+                    ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                        $(element).button("destroy");
+                    });
+
+                    $(element).button(options);
+                }
+            };
+
+            var Product = function (id, name, isNew) {
+                this.id = ko.observable(id);
+                this.name = ko.observable(name);
+                this.isNew = isNew;
+                this.editId = ko.observable(id);
+                this.editName = ko.observable(name);
+
+                //persist edits to real values on accept
+                this.accept = function () {
+                    this.id(this.editId()).name(this.editName());
+                }.bind(this);
+
+                //reset to originals on cancel
+                this.cancel = function () {
+                    this.editId(this.id()).editName(this.name());
+                }.bind(this);
+            }
+
+            var ViewModel = function () {
+                var self = this;
+                this.productList = ko.observableArray([
+                    new Product(1, "one"),
+                    new Product(2, "two"),
+                    new Product(3, "three"),
+                    new Product(4, "four")
+                ]);
+
+                this.selectedProduct = ko.observable();
+                this.editProduct = function (productToEdit) {
+                    self.selectedProduct(productToEdit);
+                };
+                this.addProduct = function () {
+                    self.selectedProduct(new Product(0, "", true));
+                },
+                this.removeProduct = function (product) {
+                    self.productList.remove(product);
+                },
+                this.accept = function () {
+                    var selected = self.selectedProduct();
+                    selected.accept();
+
+                    if (selected.isNew) {
+                        self.productList.push(new Product(selected.id(), selected.name()));
+                    }
+
+                    self.selectedProduct("");
+                },
+                this.cancel = function () {
+                    self.selectedProduct().cancel();
+                    self.selectedProduct("");
+                };
+            };
+
+            ko.applyBindings(new ViewModel());
+        })
+    </script>
+        }
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tbody data-bind="foreach: productList">
+        <tr>
+            <td data-bind="text: id"></td>
+            <td data-bind="text: name"></td> 
+            <td>
+                <button data-bind="click: $root.editProduct">Edit</button>
+            </td>
+            <td>
+                <button data-bind="click: $root.removeProduct">Delete</button>
+            </td>
+        </tr>    
+    </tbody>
+</table>
+
+<button data-bind="click: addProduct">Add Product</button>
+
+
+<hr />
+
+<div id="details" data-bind="jqDialog: { autoOpen: false, resizable: false, modal: true }, 
+    template: { name: 'editTmpl', data: selectedProduct, if: selectedProduct }, openDialog: selectedProduct"> 
+</div>
+
+<script id="editTmpl" type="text/html">
+    <p>
+        <label>ID: </label>
+        <input data-bind="value: editId"  />
+    </p>
+    <p>
+        <label>Name: </label>
+        <input data-bind="value: editName"  />
+    </p>        
+    <button data-bind="jqButton: {}, click: $root.accept">Accept</button>
+    <button data-bind="jqButton: {}, click: $root.cancel">Cancel</button>
+</script>

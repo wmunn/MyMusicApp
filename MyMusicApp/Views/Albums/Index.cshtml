@@ -1,0 +1,33 @@
+﻿@using PerpetuumSoft.Knockout
+@model MyMusicApp.Models.GiftListModel
+@{
+    ViewBag.Title = "Index";
+    var ko = Html.CreateKnockoutContext();
+}
+<h2>KMVC Index</h2>
+<script src="~/Scripts/knockout-2.2.0.debug.js"></script>
+<script src="~/Scripts/knockout.mapping-latest.debug.js"></script>
+<script type="text/javascript">
+    var viewModel = {
+        gifts : ko.observableArray()
+    };
+    ko.applyBindings(viewModel);
+ </script>
+
+<p>You have asked for @ko.Html.Span(m => m.Gifts.Count) gift(s)</p>
+<table>
+    <tbody data-bind="template: { name: 'giftRowTemplate', foreach: gifts }"></tbody>
+</table>
+ 
+<script type="text/html" id="giftRowTemplate">
+    <tr>
+        <td>Gift name: <input data-bind="value: Title"/></td>
+        <td>Price: \$ <input data-bind="value: Price"/></td>
+    </tr>
+</script>
+<style scoped="scoped">
+  input.error { border: 1px solid red; background-color: #FDC; }
+  label.error { display: block; color: Red; font-size: 0.8em; }
+</style>
+
+@ko.Apply(Model)

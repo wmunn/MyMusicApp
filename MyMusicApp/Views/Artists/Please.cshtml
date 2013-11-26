@@ -1,11 +1,8 @@
-﻿@model IEnumerable<MyMusicApp.Models.ArtistModel>
-@{
-    ViewBag.Title = "KoPage";
+﻿@{
+    ViewBag.Title = "Please";
 }
 
-<h2>KoPage</h2>
-
-<h2>Artists</h2>
+<h2>Please</h2>
 @section scripts{
     @Scripts.Render("~/bundles/jquery")
     @Styles.Render("~/Content/themes/base/css")
@@ -34,20 +31,20 @@
            // Initialize the view-model
            $.ajax({
                url: '@Url.Action("GetAllArtists", "Artists")',
-                cache: false,
-                type: 'GET',
-                contentType: 'application/json; charset=utf-8',
-                data: {},
-                success: function (data) {
-                    self.Artists(data); //Put the response in ObservableArray
-                }
-            });
+               cache: false,
+               type: 'GET',
+               contentType: 'application/json; charset=utf-8',
+               data: {},
+               success: function (data) {
+                   self.Artists(data); //Put the response in ObservableArray
+               }
+           });
 
-            //Add New Item
-            self.create = function () {
-                if (Artist.Name() != "") {
-                    $.ajax({
-                        url: '@Url.Action("AddArtist", "Artists")',
+           //Add New Item
+           self.create = function () {
+               if (Artist.Name() != "") {
+                   $.ajax({
+                       url: '@Url.Action("AddArtist", "Artists")',
                         cache: false,
                         type: 'POST',
                         contentType: 'application/json; charset=utf-8',
@@ -67,7 +64,7 @@
                 }
             }
 
-            // Delete artist details
+           // Delete artist details
             self.delete = function (Artist) {
                 if (confirm('Are you sure to Delete "' + Artist.Name + '" ??')) {
                     var id = Artist.ArtistId;
@@ -86,20 +83,21 @@
                          alert(id);
                          alert(err);
                      });
-                    }
+                }
             }
 
-            // Edit artist details
+           // Edit artist details
             self.edit = function (Artist) {
                 self.Artist(Artist);
+                $("#updateArtist").dialog("open");
             }
 
-            // Update artist details
+           // Update artist details
             self.update = function () {
                 var Artist = self.Artist();
 
                 $.ajax({
-                    url: $("#updateArtist").data("search-url").replace( "_id_" , Artist.ArtistId),
+                    url: $("#updateArtist").data("search-url").replace("_id_", Artist.ArtistId),
                     cache: false,
                     type: 'PUT',
                     contentType: 'application/json; charset=utf-8',
@@ -116,12 +114,12 @@
                 });
             }
 
-            // Reset artist details
+           // Reset artist details
             self.reset = function () {
                 self.Name("");
             }
 
-            // Cancel artist details
+           // Cancel artist details
             self.cancel = function () {
                 self.Artist(null);
             }
@@ -129,11 +127,58 @@
         var viewModel = new ArtistViewModel();
         ko.applyBindings(viewModel);
 
+        $("#openEdit").click(function () {
+            $("#updateArtist").dialog("open");
+        });
+
+        $("#updateArtist").dialog({
+            autoOpen: false,
+            width: 400,
+            height: 250,
+            modal: true,
+            buttons: {
+                "Cancel": function () {
+                    $(this).dialog("close");
+                },
+                "Save": function () {
+                    $(this).dialog("close");
+                }
+            },
+            open: function () {
+                //var rowid = $(this).data("Name");
+                var rowid = "djfsapoiijsdfoiajsiof";
+                var name = $(this).data("Name");
+                alert(this);
+                alert(rowid);
+                alert(name);
+            }
+        });
+        $("#addArtist").dialog({
+            autoOpen: false,
+            width: 400,
+            height: 250,
+            modal: true,
+            buttons: {
+                "Cancel": function () {
+                    $(this).dialog("close");
+                },
+                "Save": function () {
+                    $(this).dialog("close");
+                }
+            }
+
+        });
+
+        $("#openAddArtist").click(function () {
+            $("#addArtist").dialog("open");
+        });
     </script>
 
 }
     <h3>Artists</h3>
 
+    <button id="openAddArtist">Add Artist</button>
+    
     <table id="artists1" data-bind="visible: Artists().length > 0">
         <thead>
             <tr>
@@ -145,14 +190,13 @@
             <tr>
                 <td data-bind="text: Name"></td>
                 <td>
-                    <button data-bind="click: $root.edit">Edit</button>
+                    <button id="openEdit" data-bind="click: $root.edit">Edit</button>
                     <button id="deleteArtist" data-search-url="@Url.Action("DeleteArtist", "Artists", new { id= "_id_"})" data-bind="click: $root.delete">Delete</button>
                 </td>
             </tr>
         </tbody>
     </table>
-    <br />
-    <div style="border-top: solid 2px  #282828; width: 430px; height: 10px">&nbsp;</div>
+
 
     <div id="updateArtist" data-search-url="@Url.Action("EditArtist", "Artists", new { id= "_id_"})" data-bind="if: Artist">
         <div>
@@ -166,7 +210,7 @@
             <label for="name">Name</label>
             <input data-bind="value: Artist().Name" type="text" title="Name" />
         </div>
-        <br />
+ 
         <div>
             <button data-bind="click: $root.update">Update</button>
             <button data-bind="click: $root.cancel">Cancel</button>
@@ -181,7 +225,7 @@
             <label for="name">Name</label>
             <input data-bind="value: $root.Name" type="text" title="Name" />
         </div>
-        <br />
+
         <div>
             <button data-bind="click: $root.create">Save</button>
             <button data-bind="click: $root.reset">Reset</button>

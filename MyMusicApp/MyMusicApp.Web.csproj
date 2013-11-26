@@ -141,12 +141,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ArtistModel.cs" />
+    <Compile Include="Models\Gift.cs" />
+    <Compile Include="Models\GiftListModel.cs" />
     <Compile Include="Models\Grid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -222,6 +225,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\trirand\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\trirand\i18n\grid.locale-bg.js" />
@@ -292,6 +297,10 @@
     <Content Include="Views\Artists\Testing.cshtml" />
     <Content Include="Views\Artists\KMVC.cshtml" />
     <Content Include="Views\Artists\KoPage.cshtml" />
+    <Content Include="Views\Albums\Index.cshtml" />
+    <Content Include="Views\Albums\KoSample.cshtml" />
+    <Content Include="Views\Albums\Yo.cshtml" />
+    <Content Include="Views\Artists\Please.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

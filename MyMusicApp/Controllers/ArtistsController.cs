@@ -29,7 +29,6 @@ namespace MyMusicApp.Controllers
         public JsonResult AddArtist(Artist artist)
         {
             System.Diagnostics.Debug.WriteLine("This is " + artist.Name);
-            Console.WriteLine("Artist is " + artist.Name);
             service.addArtist(artist);
             return Json(artist, JsonRequestBehavior.AllowGet);
         }
@@ -47,10 +46,16 @@ namespace MyMusicApp.Controllers
             artist.ArtistId = id;
             service.deleteArtist(artist);
             return Json(service.getArtists(), JsonRequestBehavior.AllowGet);
-
         }
   
         public ActionResult Testing()
+        {
+            List<Artist> theList = service.getArtists();
+            IEnumerable<ArtistModel> selectedModels = theList.Select(x => new ArtistModel { ArtistId = x.ArtistId, Name = x.Name });
+            return View(selectedModels);
+        }
+
+        public ActionResult Please()
         {
             List<Artist> theList = service.getArtists();
             IEnumerable<ArtistModel> selectedModels = theList.Select(x => new ArtistModel { ArtistId = x.ArtistId, Name = x.Name });
@@ -66,7 +71,8 @@ namespace MyMusicApp.Controllers
 
         public ActionResult KMVC()
         {
-            return View();
+            var model = service.getArtists();
+            return View(model);
         }
 
         [HttpPost]

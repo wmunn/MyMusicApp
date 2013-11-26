@@ -19,6 +19,7 @@
             var name = $(this).data("Name");
             alert(this);
             alert(rowid);
+            alert(name);
             loadArtistDialog(rowid, $(this));
         },
         close: function () {
@@ -30,7 +31,7 @@
 
         alert("in loadArtistDialog");
 
-        var xurl = dialog.attr("data-url");  // From <div> on Artists.cshtml
+        var xurl = dialog.attr("url");  // From <div> on Artists.cshtml
         var row = grid.getLocalRow(rowid);
         if (!row)
             row = grid.getRowData(rowid);
