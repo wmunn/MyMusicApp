@@ -292,7 +292,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Artists\Index.cshtml" />
-    <Content Include="Views\Artists\KMVC.cshtml" />
     <Content Include="Views\JQGridArtists\Index.cshtml" />
     <Content Include="Views\KoArtists\Index.cshtml" />
     <Content Include="Views\KMVCArtists\Index.cshtml" />
