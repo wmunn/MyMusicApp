@@ -141,15 +141,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JQGridArtistsController.cs" />
+    <Compile Include="Controllers\KMVCArtistsController.cs" />
+    <Compile Include="Controllers\KoArtistsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ArtistModel.cs" />
-    <Compile Include="Models\Gift.cs" />
-    <Compile Include="Models\GiftListModel.cs" />
     <Compile Include="Models\Grid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -292,18 +292,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Artists\Index.cshtml" />
-    <Content Include="Views\Artists\Edit.cshtml" />
-    <Content Include="Views\Artists\Delete.cshtml" />
-    <Content Include="Views\Artists\Testing.cshtml" />
     <Content Include="Views\Artists\KMVC.cshtml" />
-    <Content Include="Views\Artists\KoPage.cshtml" />
-    <Content Include="Views\Albums\Index.cshtml" />
-    <Content Include="Views\Albums\KoSample.cshtml" />
-    <Content Include="Views\Albums\Yo.cshtml" />
-    <Content Include="Views\Artists\Please.cshtml" />
+    <Content Include="Views\JQGridArtists\Index.cshtml" />
+    <Content Include="Views\KoArtists\Index.cshtml" />
+    <Content Include="Views\KMVCArtists\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Albums\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

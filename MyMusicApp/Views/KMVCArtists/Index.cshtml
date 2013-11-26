@@ -1,0 +1,31 @@
+﻿@model IEnumerable<MyMusicApp.Models.ArtistModel>
+@using PerpetuumSoft.Knockout
+
+@{
+    ViewBag.Title = "KMVC";
+    var ko = Html.CreateKnockoutContext();
+}
+
+<h2>KMVC</h2>
+
+@using (ko.Html.Form("AddItem", "SimpleList", null, new { id = "myform" }))
+{
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <button id="openEditArtistModal2" value="item.Name">Edit</button>
+                <button id="open-delete-artist-modal">Delete</button>
+            </td>
+        </tr>
+    } 
+}  
+<script type="text/javascript">      
+    $('#myform').ajaxForm();
+</script> 
+
+@ko.Apply(Model)
