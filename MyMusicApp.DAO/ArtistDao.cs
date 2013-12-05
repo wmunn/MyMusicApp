@@ -16,11 +16,11 @@ namespace MyMusicApp.DAO
         static ArtistDao() {
             mockDataModel = new List<Artist>();
  
-            mockDataModel.Add(new Artist( 0, "Morrissey"));
-            mockDataModel.Add(new Artist( 1, "The Smiths"));
-            mockDataModel.Add(new Artist( 2, "Depeche Mode"));
-            mockDataModel.Add(new Artist( 3, "Thirty Seconds to Mars"));
-            mockDataModel.Add(new Artist( 4, "VNV Nation"));
+            mockDataModel.Add(new Artist( 1, "Morrissey"));
+            mockDataModel.Add(new Artist( 2, "The Smiths"));
+            mockDataModel.Add(new Artist( 3, "Depeche Mode"));
+            mockDataModel.Add(new Artist( 4, "Thirty Seconds to Mars"));
+            mockDataModel.Add(new Artist( 5, "VNV Nation"));
         }
  
         private ArtistDao() { }
@@ -72,7 +72,6 @@ namespace MyMusicApp.DAO
             }
         }
        
- 
         private int getNextId() {
             int returnValue = 0;
  

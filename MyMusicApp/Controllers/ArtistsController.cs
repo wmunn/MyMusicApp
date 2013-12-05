@@ -15,24 +15,53 @@ namespace MyMusicApp.Controllers
 
         public ArtistsController()
         {
-            service = new ArtistService();
+            try
+            {
+                service = new ArtistService();
+            }
+            catch (NullReferenceException e)
+            {
+                ShowErrorPage();
+            }
+            ShowErrorPage();
+        }
+
+        public ArtistsController(IArtistService artistService)
+        {
+            service = artistService;
         }
 
         public ActionResult Index()
         {
-            List<Artist> theList = service.getArtists();
-            IEnumerable<ArtistModel> selectedModels = theList.Select(x => new ArtistModel { ArtistId = x.ArtistId, Name = x.Name });
-            return View(selectedModels);
+            return View();
         }
-        
+
+        public ActionResult ShowErrorPage()
+        {
+            ViewBag.Message = "FEEEFEFEWFWFWEEFWEEFF";
+            return View();
+        }
+
         public JsonResult GetAllArtists()
         {
-            return Json(service.getArtists(), JsonRequestBehavior.AllowGet);
+            List<Artist> theList = service.getArtists();
+            theList = theList.OrderBy(m => m.Name).ToList();
+            return Json(theList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetAutocompleteArtists(string term)
+        {
+            List<string> artistsNames = new List<string>();
+            var allArtists = service.getArtists();
+            var filteredArtists = allArtists.Where( artist => artist.Name.Contains(term));
+            foreach (Artist art in filteredArtists)
+                artistsNames.Add(art.Name);
+
+            return Json(artistsNames, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult AddArtist(Artist artist)
         {
-            System.Diagnostics.Debug.WriteLine("This is " + artist.Name);
             service.addArtist(artist);
             return Json(artist, JsonRequestBehavior.AllowGet);
         }
@@ -41,15 +70,20 @@ namespace MyMusicApp.Controllers
         {
            artist.ArtistId = id;
            service.editArtist(artist);
-           return Json(service.getArtists(), JsonRequestBehavior.AllowGet);
+           List<Artist> theList = service.getArtists();
+           theList = theList.OrderBy(m => m.Name).ToList();
+           return Json(theList, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DeleteArtist(int id)
         {
             Artist artist = new Artist();
-            artist.ArtistId = id;
+            artist = service.getArtist(id);
+            //todo
             service.deleteArtist(artist);
-            return Json(service.getArtists(), JsonRequestBehavior.AllowGet);
+            List<Artist> theList = service.getArtists();
+            theList = theList.OrderBy(m => m.Name).ToList();
+            return Json(theList, JsonRequestBehavior.AllowGet);
         }
     }
 }
