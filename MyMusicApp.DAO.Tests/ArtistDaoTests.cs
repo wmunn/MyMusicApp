@@ -9,14 +9,17 @@ namespace MyMusicApp.DAO.Tests
     [TestClass]
     public class ArtistDaoTests
     {
-        List<Artist> mockDb = new List<Artist>()
+        List<Artist> mockDb;
+        
+        public ArtistDaoTests()
         {
-            new Artist( 1, "Fun."),
-            new Artist( 2, "The Doors")
-        };
+            mockDb = new List<Artist>();
+            mockDb.Add(new Artist( 1, "Fun."));
+            mockDb.Add(new Artist( 2, "The Doors"));
+        }
 
         //[TestMethod]
-        //public void select_returnsAllArtistsInDb()
+        //public void select_ReturnsAllArtistsInDb()
         //{
         //    //Arrange
         //    ArtistDao testDao = new ArtistDao(mockDb);
@@ -27,7 +30,22 @@ namespace MyMusicApp.DAO.Tests
         //    //Assert
         //    CollectionAssert.AreEqual(artists, mockDb);
         //}
-        
+
+        [TestMethod]
+        public void select_ReturnsArtistInDb()
+        {
+            //Arrange
+            ArtistDao testDao = new ArtistDao(mockDb);
+            Artist expectedArtist = new Artist(1, "Fun.");
+
+            //Act
+            Artist actualArtist = testDao.select(expectedArtist.ArtistId);
+
+            //Assert
+            Assert.AreEqual(expectedArtist.ArtistId, actualArtist.ArtistId);
+            Assert.AreEqual(expectedArtist.Name, actualArtist.Name);
+        }
+
         [TestMethod]
         public void insert_InsertsArtistInDb()
         {

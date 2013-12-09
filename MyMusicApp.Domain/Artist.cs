@@ -26,5 +26,20 @@ namespace MyMusicApp.Domain
             this.ArtistId = ArtistId;
             this.Name = Name;
         }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public bool Equals(Artist artist)
+        {
+            return ( ArtistId == artist.ArtistId && Name == artist.Name);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode() ^ ArtistId;
+        }
     }
 }
