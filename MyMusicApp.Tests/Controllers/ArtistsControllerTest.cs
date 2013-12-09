@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using MyMusicApp.Models;
 using MyMusicApp.Tests.Models;
 using MyMusicApp.Domain;
+using System.Web.Script.Serialization;
 
 namespace MyMusicApp.Tests.Controllers
 {
@@ -94,15 +95,15 @@ namespace MyMusicApp.Tests.Controllers
         public void AddArtist_PutsValidArtistIntoDb()
         {
             // Arrange
-            MocArtistService mocService = new MocArtistService();
-            ArtistsController controller = new ArtistsController(mocService);
+            MockArtistService mockService = new MockArtistService();
+            ArtistsController controller = new ArtistsController(mockService);
             Artist artist = GetArtist();
 
             // Act
             controller.AddArtist(artist);
 
             // Assert
-            List<Artist> artists = mocService.getArtists();
+            List<Artist> artists = mockService.getArtists();
             Assert.IsTrue(artists.Contains(artist));
         }
 
@@ -110,16 +111,16 @@ namespace MyMusicApp.Tests.Controllers
         public void DeleteArtist_RemovesValidArtistFromDb()
         {
             // Arrange
-            MocArtistService mocService = new MocArtistService();
-            ArtistsController controller = new ArtistsController(mocService);
+            MockArtistService mockService = new MockArtistService();
+            ArtistsController controller = new ArtistsController(mockService);
             Artist artist = GetArtist();
-            mocService.addArtist(artist);
+            mockService.addArtist(artist);
 
             // Act
             controller.DeleteArtist(artist.ArtistId);
 
             // Assert
-            List<Artist> artists = mocService.getArtists();
+            List<Artist> artists = mockService.getArtists();
             Assert.IsTrue(!artists.Contains(artist));
         }
 
@@ -127,10 +128,10 @@ namespace MyMusicApp.Tests.Controllers
         public void EditArtist_UpdatesValidArtistInDb()
         {
             // Arrange
-            MocArtistService mocService = new MocArtistService();
-            ArtistsController controller = new ArtistsController(mocService);
+            MockArtistService mockService = new MockArtistService();
+            ArtistsController controller = new ArtistsController(mockService);
             Artist originalArtist = GetArtist();
-            mocService.addArtist(originalArtist);
+            mockService.addArtist(originalArtist);
             Artist editedArtist = GetArtist();
             editedArtist.Name = "NewName";
 
@@ -138,9 +139,38 @@ namespace MyMusicApp.Tests.Controllers
             controller.EditArtist(originalArtist.ArtistId, editedArtist);
 
             // Assert
-            List<Artist> artists = mocService.getArtists();
+            List<Artist> artists = mockService.getArtists();
             Assert.IsTrue(!artists.Contains(originalArtist));
             Assert.IsTrue(artists.Contains(editedArtist));
+        
         }
+
+        //[TestMethod]
+        //public void GetAllArtists_ReturnsAllArtistsInDb()
+        //{
+        //    // Arrange
+        //    MocArtistService mockService = new MocArtistService();
+        //    ArtistsController controller = new ArtistsController(mockService);
+        //    List<Artist> localList = new List<Artist>();
+        //    Artist artist = GetArtist();
+        //    Artist artist2 = GetArtist(2, "Two");
+        //    Artist artist3 = GetArtist(3, "Three");
+        //    mockService.addArtist(artist);
+        //    mockService.addArtist(artist2);
+        //    mockService.addArtist(artist3);
+        //    localList.Add(artist);
+        //    localList.Add(artist2);
+        //    localList.Add(artist3);           
+           
+        //    // Act
+        //    var list = new JavaScriptSerializer().Deserialize<List<Artist>>(controller.GetAllArtists()); 
+        //    List<Artist> serviceList = 
+             
+
+        //    // Assert
+        //    List<Artist> artists = mockService.getArtists();
+        //    Assert.IsTrue(!artists.Contains(originalArtist));
+        //    Assert.IsTrue(artists.Contains(editedArtist));
+        //}
     }
 }

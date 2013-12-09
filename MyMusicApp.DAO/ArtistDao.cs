@@ -22,6 +22,13 @@ namespace MyMusicApp.DAO
             mockDataModel.Add(new Artist( 4, "Thirty Seconds to Mars"));
             mockDataModel.Add(new Artist( 5, "VNV Nation"));
         }
+
+        public ArtistDao(List<Artist> artists)
+        {
+            mockDataModel = new List<Artist>();
+            foreach(Artist artist in artists)
+                mockDataModel.Add(new Artist(artist.ArtistId, artist.Name));
+        }
  
         private ArtistDao() { }
  

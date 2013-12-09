@@ -9,28 +9,28 @@ using MyMusicApp.Domain;
 
 namespace MyMusicApp.Tests.Models
 {
-    class MocArtistService : Services.IArtistService
+    class MockArtistService : Services.IArtistService
     {
-        private List<Artist> mocDb = new List<Artist>();
+        private List<Artist> mockDb = new List<Artist>();
 
         public List<Artist> getArtists()
         {
-            return mocDb;
+            return mockDb;
         }
         
         public Artist getArtist(int ArtistId)
         {
-            return mocDb.FirstOrDefault(artist => artist.ArtistId == ArtistId);   
+            return mockDb.FirstOrDefault(artist => artist.ArtistId == ArtistId);   
         }
 
         public void editArtist(Artist artist)
         {
-            foreach (Artist a in mocDb)
+            foreach (Artist a in mockDb)
             {
                 if (a.ArtistId == artist.ArtistId)
                 {
-                    mocDb.Remove(a);
-                    mocDb.Add(artist);
+                    mockDb.Remove(a);
+                    mockDb.Add(artist);
                     break;
                 }
             }
@@ -38,12 +38,12 @@ namespace MyMusicApp.Tests.Models
 
         public void addArtist(Artist artist)
         {
-            mocDb.Add(artist);
+            mockDb.Add(artist);
         }
 
         public void deleteArtist(Artist artist)
         {
-            mocDb.Remove(artist);
+            mockDb.Remove(artist);
         }
     }
 }

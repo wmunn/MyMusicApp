@@ -21,9 +21,9 @@ namespace MyMusicApp.Controllers
             }
             catch (NullReferenceException e)
             {
-                ShowErrorPage();
+                Console.WriteLine(e.StackTrace);
+                //ShowErrorPage();
             }
-            ShowErrorPage();
         }
 
         public ArtistsController(IArtistService artistService)
@@ -33,12 +33,6 @@ namespace MyMusicApp.Controllers
 
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult ShowErrorPage()
-        {
-            ViewBag.Message = "FEEEFEFEWFWFWEEFWEEFF";
             return View();
         }
 

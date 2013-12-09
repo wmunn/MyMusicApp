@@ -99,7 +99,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ArtistsControllerTest.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="Models\MocArtistService.cs" />
+    <Compile Include="Models\MockArtistService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -171,14 +171,14 @@
 <label for="tags">Filter: </label>
 <input type="text" name="tags" id="tags">
 
-<table id="artists1" data-bind="visible: Artists().length > 0">
+<table id="artists1" class="artistList" data-bind="visible: Artists().length > 0">
     <thead>
         <tr>
             <th onclick="sortArtists()">Name</th>
             <th>Actions</th>
         </tr>
     </thead>
-    <tbody data-bind="foreach: Artists">
+    <tbody class="artistTable" data-bind="foreach: Artists">
         <tr>
             <td data-bind="text: Name"></td>
             <td>

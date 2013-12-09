@@ -135,3 +135,11 @@ ul#menu {
             color: #333;
             text-decoration: none;
         }
+
+
+html > body tbody.artistTable {
+    display: block;
+    height: 400px;
+    overflow: auto;
+    width: 400px;
+}
