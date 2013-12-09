@@ -4,7 +4,7 @@
     <BuildArtifactsDir Include="BuildArtifacts\" />
     <SolutionFile Include="MyMusicApp.sln" />
     <MSTestLocation Include="C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\MSTest.exe"/>
-    <UnitTestsDLL Include="BuildArtifacts\MyMusicApp.Tests.dll" />
+    <UnitTestsDLL Include="BuildArtifacts\MyMusicApp.Tests.dll BuildArtifacts\MyMusicApp.DAO.Tests.dll" />
     <TestResultsPath Include="BuildArtifacts\TestResults.xml" />
   </ItemGroup>
   
@@ -20,7 +20,7 @@
   </Target>
   <Target Name="Init" DependsOnTargets="Clean" >
     <MakeDir Directories="@(BuildArtifactsDir)"/>
-  </Target>
+  </Target> `
   <Target Name="Clean">
     <RemoveDir Directories="@(BuildArtifactsDir)" />
   </Target>

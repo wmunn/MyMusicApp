@@ -11,7 +11,8 @@ namespace MyMusicApp.Services
 {
     public class ArtistService : IArtistService
     {
-        public List<Artist> getArtists() {
+        public List<Artist> getArtists() 
+        {
             return (new List<Artist>(ArtistDao.Instance.select()));
         }
 
